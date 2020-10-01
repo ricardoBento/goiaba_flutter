@@ -10,17 +10,24 @@ class HomePage extends StatelessWidget {
         title: Text('Home | Home Hub'),
       ),
       body: Container(
+        decoration: BoxDecoration(
+            color: Colors.amber,
+            image: DecorationImage(
+                image: AssetImage("assets/images/wl-bg.png"),
+                fit: BoxFit.none)),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Padding(padding: EdgeInsets.only(left: 30.0),
-            child: Text(
-              'Welcome',
-              style: TextStyle(
-                fontSize: 24.0,
+            Padding(
+              padding: EdgeInsets.only(left: 30.0),
+              child: Text(
+                'Welcome',
+                style: TextStyle(
+                  fontSize: 24.0,
+                ),
               ),
-            ),),
+            ),
             Padding(
               padding: EdgeInsets.fromLTRB(34.0, 20.0, 0.0, 0.0),
               child: Container(

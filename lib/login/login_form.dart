@@ -8,8 +8,8 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
-  final _usernameController = TextEditingController();
-  final _passwordController = TextEditingController();
+  final _usernameController = TextEditingController(text: 'roicoroy');
+  final _passwordController = TextEditingController(text: 'Rwbento123');
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +32,11 @@ class _LoginFormState extends State<LoginForm> {
       child: BlocBuilder<LoginBloc, LoginState>(
         builder: (context, state) {
           return Container(
+            decoration: BoxDecoration(
+                color: Colors.amber,
+                image: DecorationImage(
+                    image: AssetImage("assets/images/wl-bg.png"),
+                    fit: BoxFit.none)),
             child: Form(
               child: Padding(
                 padding: EdgeInsets.all(40.0),

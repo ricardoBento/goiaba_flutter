@@ -33,6 +33,10 @@ dependencies:
   sqflite: ^1.3.0
   path_provider: ^1.6.5
 
+  # local storage
+  # https://medium.com/flutter-community/how-to-use-local-storage-in-flutter-3169e34f051b
+  shared_preferences: ^0.5.8
+
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.0

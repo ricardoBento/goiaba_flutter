@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:goiaba_flutter/model/api_model.dart';
 
-final _base = "https://home-hub-app.herokuapp.com";
-final _tokenEndpoint = "/api-token-auth/";
+final _base = "http://roicoroy.pythonanywhere.com";
+final _tokenEndpoint = "/api/users/login/";
 final _tokenURL = _base + _tokenEndpoint;
 
 Future<Token> getToken(UserLogin userLogin) async {
