@@ -20,7 +20,7 @@ class SimpleBlocDelegate extends BlocDelegate {
   @override
   void onTransition(Bloc bloc, Transition transition) {
     super.onTransition(bloc, transition);
-    print (transition);
+    print(transition);
   }
 
   @override
@@ -33,16 +33,13 @@ void main() {
   BlocSupervisor.delegate = SimpleBlocDelegate();
   final userRepository = UserRepository();
 
-  runApp(
-    BlocProvider<AuthenticationBloc>(
-      create: (context) {
-        return AuthenticationBloc(
-          userRepository: userRepository
-        )..add(AppStarted());
-      },
-      child: App(userRepository: userRepository),
-    )
-  );
+  runApp(BlocProvider<AuthenticationBloc>(
+    create: (context) {
+      return AuthenticationBloc(userRepository: userRepository)
+        ..add(AppStarted());
+    },
+    child: App(userRepository: userRepository),
+  ));
 }
 
 class App extends StatelessWidget {
@@ -51,8 +48,9 @@ class App extends StatelessWidget {
   App({Key key, @required this.userRepository}) : super(key: key);
 
   @override
-  Widget build (BuildContext context) {
+  Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.red,
         brightness: Brightness.dark,
@@ -66,7 +64,9 @@ class App extends StatelessWidget {
             return HomePage();
           }
           if (state is AuthenticationUnauthenticated) {
-            return LoginPage(userRepository: userRepository,);
+            return LoginPage(
+              userRepository: userRepository,
+            );
           }
           if (state is AuthenticationLoading) {
             return LoadingIndicator();
@@ -77,143 +77,41 @@ class App extends StatelessWidget {
   }
 }
 
+// void main() => runApp(MyApp());
 
-
-// import 'package:flutter/material.dart';
-// import 'components/app_fab_circular_menu.dart';
-
-// void main() {
-//   runApp(RadialMenuApp());
-// }
-
-// class WhiteLabelApp extends StatelessWidget {
-//   final GlobalKey<FabCircularMenuState> fabKey = GlobalKey();
-
+// class MyApp extends StatelessWidget {
 //   @override
 //   Widget build(BuildContext context) {
-//     final primaryColor = Theme.of(context).primaryColor;
 //     return MaterialApp(
 //       debugShowCheckedModeBanner: false,
-//       home: Scaffold(
-//           body: Container(
-//             decoration: BoxDecoration(
-//                 color: Colors.amber,
-//                 image: DecorationImage(
-//                     image: AssetImage("assets/images/wl-bg.png"),
-//                     fit: BoxFit.cover)),
-//             child: Center(
-//               child: Text('Welcome to Flow White Label with Futter',
-//                   style: TextStyle(color: Colors.amber)),
-//             ),
-//           ),
-//           floatingActionButton: Builder(
-//             builder: (context) => AppFabCircularMenu(
-//               key: fabKey,
-//               // Cannot be `Alignment.center`
-//               alignment: Alignment.bottomRight,
-//               ringColor: Colors.white.withAlpha(25),
-//               ringDiameter: 500.0,
-//               ringWidth: 150.0,
-//               fabSize: 64.0,
-//               fabElevation: 8.0,
-
-//               // Also can use specific color based on wether
-//               // the menu is open or not:
-//               fabOpenColor: Colors.red,
-//               fabCloseColor: Colors.blue,
-//               // These properties take precedence over fabColor
-//               fabColor: Colors.white,
-//               fabOpenIcon: Icon(Icons.menu, color: primaryColor),
-//               fabCloseIcon: Icon(Icons.close, color: primaryColor),
-//               fabMargin: const EdgeInsets.all(16.0),
-//               animationDuration: const Duration(milliseconds: 800),
-//               animationCurve: Curves.easeInOutCirc,
-//               onDisplayChange: (isOpen) {
-//                 // _showSnackBar(context, "The menu is ${isOpen ? "open" : "closed"}");
-//               },
-//               children: <Widget>[
-//                 RawMaterialButton(
-//                   onPressed: () {
-//                     // _showSnackBar(context, "You pressed 1");
-//                   },
-//                   shape: CircleBorder(),
-//                   padding: const EdgeInsets.all(24.0),
-//                   child: Icon(Icons.looks_one, color: Colors.white),
-//                 ),
-//                 RawMaterialButton(
-//                   onPressed: () {
-//                     // _showSnackBar(context, "You pressed 2");
-//                   },
-//                   shape: CircleBorder(),
-//                   padding: const EdgeInsets.all(24.0),
-//                   child: Icon(Icons.looks_two, color: Colors.white),
-//                 ),
-//                 RawMaterialButton(
-//                   onPressed: () {
-//                     // _showSnackBar(context, "You pressed 3");
-//                   },
-//                   shape: CircleBorder(),
-//                   padding: const EdgeInsets.all(24.0),
-//                   child: Icon(Icons.looks_3, color: Colors.white),
-//                 ),
-//                 RawMaterialButton(
-//                   onPressed: () {
-//                     // _showSnackBar(context, "You pressed 4. This one closes the menu on tap");
-//                     fabKey.currentState.close();
-//                   },
-//                   shape: CircleBorder(),
-//                   padding: const EdgeInsets.all(24.0),
-//                   child: Icon(Icons.looks_4, color: Colors.white),
-//                 )
-//               ],
-//             ),
-//           )),
+//       home: HomeScreen(),
 //     );
 //   }
 // }
 
-// class RadialMenuApp extends StatelessWidget {
-//   final GlobalKey<FabCircularMenuState> fabKey = GlobalKey();
+// class HomeScreen extends StatelessWidget {
+//   final items = [
+//     RadialMenuItem(
+//         Icon(Icons.star, color: Colors.white), Colors.red, () => print('red')),
+//     RadialMenuItem(Icon(Icons.star, color: Colors.white), Colors.green,
+//         () => print('green')),
+//     RadialMenuItem(Icon(Icons.star, color: Colors.white), Colors.blue,
+//         () => print('blue')),
+//     RadialMenuItem(Icon(Icons.star, color: Colors.white), Colors.yellow,
+//         () => print('yellow')),
+//     RadialMenuItem(Icon(Icons.star, color: Colors.white), Colors.purple,
+//         () => print('purple')),
+//   ];
 
 //   @override
 //   Widget build(BuildContext context) {
-//     final primaryColor = Theme.of(context).primaryColor;
-//     return MaterialApp(
-//       debugShowCheckedModeBanner: false,
-//       home: Scaffold(
-//         body: Container(
-//           // color: const Color(0xFF192A56),
-//           decoration: BoxDecoration(
-//               color: Colors.amber,
-//               image: DecorationImage(
-//                   image: AssetImage("assets/images/wl-bg.png"),
-//                   fit: BoxFit.cover)),
-//           child: Center(
-//             child: RaisedButton(
-//               onPressed: () {
-//                 // The menu can be handled programatically using a key
-//                 if (fabKey.currentState.isOpen) {
-//                   fabKey.currentState.close();
-//                 } else {
-//                   fabKey.currentState.open();
-//                 }
-//               },
-//               color: Colors.white,
-//               child: Text('Welcome to Flow White Label with Futter',
-//                   style: TextStyle(color: Colors.amber)),
-//             ),
-//           ),
-//         ),
+//     return Scaffold(
+//       body: SafeArea(
+//         child: ListView(children: [
+//           RadialMenu(items, fanout: Fanout.bottom),
+//           Divider(),
+//         ]),
 //       ),
 //     );
 //   }
-
-//   // void _showSnackBar (BuildContext context, String message) {
-//   //   Scaffold.of(context).showSnackBar(
-//   //       SnackBar(
-//   //         content: Text(message),
-//   //         duration: const Duration(milliseconds: 1000),
-//   //       )
-//   //   );
-//   // }
 // }
