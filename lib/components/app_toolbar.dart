@@ -27,8 +27,8 @@ class _CustomAppBarState extends State<GoiabaAppBar> {
             decoration: BoxDecoration(
                 color: Colors.blueAccent,
                 borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(20),
-                    bottomRight: Radius.circular(20))),
+                    bottomLeft: Radius.circular(40),
+                    bottomRight: Radius.circular(10))),
             child: Container(
               margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
               child: Row(
